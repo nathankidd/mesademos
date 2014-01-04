@@ -416,7 +416,19 @@ WriteFile(const char *filename)
    }
 
    glPixelStorei(GL_PACK_ALIGNMENT, 1);
+   i = glGetError();
+   if (i != GL_NO_ERROR)
+   {
+      printf("Error: before glReadPixels(): 0x%x.\n", i);
+      return;
+   }
    glReadPixels(0, 0, gWidth, gHeight, GL_RGB, GL_UNSIGNED_BYTE, image);
+   i = glGetError();
+   if (i != GL_NO_ERROR)
+   {
+      printf("Error: glReadPixels() failed with 0x%x.\n", i);
+      return;
+   }
 
    f = fopen(filename, "w");
    if (!f) {
