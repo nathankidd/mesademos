@@ -484,6 +484,7 @@ main(int argc, char *argv[])
          return 1;
       }
       InitGL();
+      printf("OpenGL Renderer: %s\n", glGetString(GL_RENDERER));
       Render();
       WriteFile(fileName);
       DestroyPbuffer(gDpy, gScreen, gPBuffer);
